@@ -80,25 +80,20 @@
             }
             return parts;
         }
-        Promise.all([
-            mergeFiles(getParts("Build/ultrakill.data.unityweb", 1, 4)),
-            mergeFiles(getParts("Build/ultrakill.wasm.unityweb", 1, 2))
-        ]).then(([dataUrl, wasmurl]) => {
-            document.querySelector("#unity-canvas").hidden = false;
-            createUnityInstance(document.querySelector("#unity-canvas"), {
-                dataUrl: dataUrl,
-                frameworkUrl: "Build/ultrakill.framework.js.unityweb",
-                codeUrl: wasmurl,
-                streamingAssetsUrl: "StreamingAssets",
-                companyName: "Hakita and Cake Logic",
-                productName: "ULTRAKILL",
-                productVersion: "1.4",
+       createUnityInstance(document.querySelector("#unity-canvas"), {
+  dataUrl: "Build/ultrakill.data.unityweb",
+  frameworkUrl: "Build/ultrakill.framework.js.unityweb",
+  codeUrl: "Build/ultrakill.wasm.unityweb",
+  streamingAssetsUrl: "StreamingAssets",
+  companyName: "Hakita and Cake Logic",
+  productName: "ULTRAKILL",
+  productVersion: "1.4",
                 // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
                 // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
             }).then((e) => {
                 document.querySelector("#loading-text").remove();
             });
-        });
+        
     </script>
 </body>
 
